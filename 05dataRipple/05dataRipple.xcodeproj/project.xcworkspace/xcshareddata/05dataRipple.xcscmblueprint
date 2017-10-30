@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D12DAD9580438F075F79A1341BAA613BD60DDFF0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D12DAD9580438F075F79A1341BAA613BD60DDFF0" : 9223372036854775807,
+    "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1CA06D27-2746-45A7-B610-EE7BEE195EF7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D12DAD9580438F075F79A1341BAA613BD60DDFF0" : "apps\/",
+    "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E" : "addons\/ofxSocketIO\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "05dataRipple",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "03bigscreens_Yun\/05dataRipple\/05dataRipple.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/soixantecircuits\/ofxSocketIO.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NYUNN\/ofx.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D12DAD9580438F075F79A1341BAA613BD60DDFF0"
+    }
+  ]
+}
