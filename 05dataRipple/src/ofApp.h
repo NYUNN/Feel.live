@@ -5,10 +5,11 @@
 #include "ofxSocketIO.h"
 #include "ofxSocketIOData.h"
 #include "ofxRipples.h"
-#include "ofxBounce.h"
 #include "ofxGUI.h"
 #include "ofxFX.h"
 #include "particle.hpp"
+#include "ofxXmlSettings.h"
+
 
 
 
@@ -48,11 +49,12 @@ public:
     int selectedEmotion;
     
     // Graphic Side @YUN
-    float w = ofGetWindowWidth();
-    float h = ofGetWindowHeight();
+    int screenHeight;
+    ofxIntSlider screenWidth;
+
+
     
     ofxRipples  red, blue;
-    ofxBounce   bounce;
     
     bool bInfoText;
     bool bHide;

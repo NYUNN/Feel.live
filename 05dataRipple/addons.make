@@ -1,3 +1,4 @@
 ofxFX
 ofxGui
 ofxSocketIO
+ofxXmlSettings

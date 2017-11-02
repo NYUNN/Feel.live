@@ -7,7 +7,7 @@ void ofApp::setup(){
     // GRAPHIC SETTING
     ofSetFrameRate(60);
     ofEnableAlphaBlending();
-    ofSetWindowShape(w, h);
+    
     
     // BOOLEAN SETTING
     bInfoText = true;
@@ -15,8 +15,6 @@ void ofApp::setup(){
     bVideo = false;
     isPlayed = false;
     
-    red.allocate(w, h);
-    blue.allocate(w, h);
     
     // GUI
     gui.setup();
@@ -24,7 +22,10 @@ void ofApp::setup(){
     gui.add(rippleSizeY.setup("sizeY", 20, 10, 100));
     gui.add(rippleDistance.setup("distance", 2, 1, 10));
     gui.add(rippleDamping.setup("damping", 0.995, 0.900, 0.999));
-    gui.add(frameRate.setup("frameRate", true));
+    gui.add(screenWidth.setup("screenWidth", 1280, 1280, 11560));
+    gui.loadFromFile("settings.xml");
+    screenHeight = screenWidth*0.08475;
+    ofSetWindowShape(screenWidth, screenHeight);
     
     // Initial position
     for (int i = 0; i < colorNum ;i++){
@@ -32,6 +33,9 @@ void ofApp::setup(){
         ypos.push_back(-10);
     }
     
+    
+    red.allocate(screenWidth, screenHeight);
+
     
     // socketIO part
     isConnected = false;
@@ -230,9 +234,9 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    //ofBackground(0);
+    ofBackground(0);
     if(bRipple){
-    red.draw(0,0, w, h);
+    red.draw(0,0, screenWidth, screenHeight);
     red.distance = rippleDistance;
     red.damping = rippleDamping;
     }
@@ -321,6 +325,12 @@ void ofApp::keyPressed(int key){
         vid_calm.setVolume(0.0);
 
     }
+    if(key == 's') {
+        gui.saveToFile("settings.xml");
+    }
+    if(key == 'l') {
+        gui.loadFromFile("settings.xml");
+    }
 }
 
 //--------------------------------------------------------------
@@ -340,29 +350,29 @@ void ofApp::onServerEvent (ofxSocketIOData& data) {
     cout << gotData << endl;
     
     if (gotData == 1){
-        xpos[0] = ofRandom(0, w);
-        ypos[0] = ofRandom(0, h);
+        xpos[0] = ofRandom(0, screenWidth);
+        ypos[0] = ofRandom(0, screenHeight);
     } else if (gotData == 2){
-        xpos[1] = ofRandom(0, w);
-        ypos[1] = ofRandom(0, h);
+        xpos[1] = ofRandom(0, screenWidth);
+        ypos[1] = ofRandom(0, screenHeight);
     } else if (gotData == 3){
-        xpos[2] = ofRandom(0, w);
-        ypos[2] = ofRandom(0, h);
+        xpos[2] = ofRandom(0, screenWidth);
+        ypos[2] = ofRandom(0, screenHeight);
     } else if (gotData == 4){
-        xpos[3] = ofRandom(0, w);
-        ypos[3] = ofRandom(0, h);
+        xpos[3] = ofRandom(0, screenWidth);
+        ypos[3] = ofRandom(0, screenHeight);
     } else if (gotData == 5){
-        xpos[4] = ofRandom(0, w);
-        ypos[4] = ofRandom(0, h);
+        xpos[4] = ofRandom(0, screenWidth);
+        ypos[4] = ofRandom(0, screenHeight);
     } else if (gotData == 6){
-        xpos[5] = ofRandom(0, w);
-        ypos[5] = ofRandom(0, h);
+        xpos[5] = ofRandom(0, screenWidth);
+        ypos[5] = ofRandom(0, screenHeight);
     } else if (gotData == 7){
-        xpos[6] = ofRandom(0, w);
-        ypos[6] = ofRandom(0, h);
+        xpos[6] = ofRandom(0, screenWidth);
+        ypos[6] = ofRandom(0, screenHeight);
     } else if (gotData == 8){
-        xpos[7] = ofRandom(0, w);
-        ypos[7] = ofRandom(0, h);
+        xpos[7] = ofRandom(0, screenWidth);
+        ypos[7] = ofRandom(0, screenHeight);
     }
     
     //    ofLogNotice("ofxSocketIO", data.getStringValue("stringData"));
