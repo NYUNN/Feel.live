@@ -8,6 +8,10 @@
 #include "ofxBounce.h"
 #include "ofxGUI.h"
 #include "ofxFX.h"
+#include "particle.hpp"
+
+
+
 
 class ofApp : public ofBaseApp{
 public:
@@ -64,8 +68,31 @@ public:
     
     int colorNum = 8;
     
-    // ARRAYS
+    // BLOB ARRAYS
     vector <int> xpos;
     vector <int> ypos;
     
+    // TEXT PARTICLE
+    vector <particle> particles;
+    vector <string> words;
+    vector <string> letters;
+    
+    int wordNum;
+    int letterNum;
+    
+    float velocityValue;
+    ofEasyCam cam;
+    
+    bool rainForce;
+    bool textParticleOn;
+    
+    // VIDEO PLAYER
+    ofAVFoundationPlayer vid_calm;
+
+    bool bVideo;
+    bool isPlayed;
+    
+    // SOUND PLAYER
+    ofSoundPlayer  sound1;
+    ofSoundPlayer  sound2;
 };

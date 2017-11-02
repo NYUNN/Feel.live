@@ -4,13 +4,16 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    // Graphic setting
+    // GRAPHIC SETTING
     ofSetFrameRate(60);
     ofEnableAlphaBlending();
     ofSetWindowShape(w, h);
     
+    // BOOLEAN SETTING
     bInfoText = true;
-    bRipple = false;
+    bRipple = true;
+    bVideo = false;
+    isPlayed = false;
     
     red.allocate(w, h);
     blue.allocate(w, h);
@@ -32,7 +35,8 @@ void ofApp::setup(){
     
     // socketIO part
     isConnected = false;
-    address = "http://67.205.153.66:9999";
+    //    address = "http://67.205.153.66:9999";
+    address = "http://localhost:9999";
     status = "not connected";
     socketIO.setup(address);
     /*
@@ -44,8 +48,8 @@ void ofApp::setup(){
     
     ofAddListener(socketIO.notifyEvent, this, &ofApp::gotEvent);
     ofAddListener(socketIO.connectionEvent, this, &ofApp::onConnection);
- 
-
+    
+    
     // set color list
     colors = new ofColor[9];
     
@@ -96,6 +100,59 @@ void ofApp::setup(){
     colors[8].g = 152;
     colors[8].b = 51;
     
+    // TEXT PARTICLE
+    
+    // keycode init
+    textParticleOn = false;
+    rainForce = false;
+    
+    // particle init
+    wordNum = 50;
+    letterNum = 100;
+    velocityValue = 20;
+    
+    words = {"sad", "mad", "scared", "peaceful", "powerful", "confused", "rejected", "helpless", "submissive", "insecure","anxious", "excited", "sensuous", "energetic", "cheerful" "creative", "hopeful", "aware", "proud", "respected", "appreciated", "important", "faithful", "nurturing", "trusting", "loving", "intimate", "thoughtful", "content", "tired", "bored", "lonely", "depressed", "ashamed", "guilty", "hurt", "hostile", "angry", "selfish", "hateful", "critical"};
+    
+    letters = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+    
+    for (int i = 0; i < wordNum; i++){
+        particle myParticle;
+        myParticle.setLetterPos = false;
+        myParticle.selectedWord = words[ofRandom(words.size())];
+        float vx = ofRandom(-velocityValue*8, velocityValue*8);
+        float vy = ofRandom(-velocityValue,velocityValue);
+        float vz = ofRandom(velocityValue*5,velocityValue*8);
+        myParticle.setInitialCondition(ofGetWindowSize()[0]/2,ofGetWindowHeight()/2, -7000, vx, vy, vz);
+        particles.push_back(myParticle);
+    }
+    
+    for (int i = 0; i < letterNum; i++){
+        particle myParticle;
+        myParticle.setLetterPos = false;
+        myParticle.selectedWord = letters[ofRandom(letters.size())];
+        float vx = ofRandom(-velocityValue*8, velocityValue*8);
+        float vy = ofRandom(-velocityValue,velocityValue);
+        float vz = ofRandom(velocityValue*5,velocityValue*8);
+        myParticle.setInitialCondition(ofGetWindowSize()[0]/2,ofGetWindowHeight()/2, -7000, vx, vy, vz);
+        particles.push_back(myParticle);
+    }
+    
+    // VIDEO
+    
+    vid_calm.setPixelFormat(OF_PIXELS_UYVY);
+    //setPixelFormat() has to be called before loading a movie...
+    
+    vid_calm.setLoopState(OF_LOOP_NORMAL);
+    vid_calm.load("720_30fps_q80.mov");
+    
+    // SOUND
+    sound1.load("sound1.wav");
+    sound2.load("sound2.wav");
+
+
+    
+    
+
 }
 
 void ofApp::onConnection () {
@@ -120,29 +177,79 @@ void ofApp::bindEvents () {
 //--------------------------------------------------------------
 void ofApp::update(){
     
-    
-    red.begin();
-    ofFill();
-    //ofSetColor(255,0,0);
-   // ofDrawEllipse(xpos[0], ypos[0], rippleSizeX, rippleSizeY);
-    
-    for (int i = 0; i < colorNum ; i++){
-        ofSetColor(colors[i+1]);
-        ofDrawEllipse(xpos[i], ypos[i], rippleSizeX, rippleSizeY);
+    if(bRipple){
+        red.begin();
+        ofFill();
+        //ofSetColor(255,0,0);
+        // ofDrawEllipse(xpos[0], ypos[0], rippleSizeX, rippleSizeY);
+        
+        for (int i = 0; i < colorNum ; i++){
+            ofSetColor(colors[i+1]);
+            ofDrawEllipse(xpos[i], ypos[i], rippleSizeX, rippleSizeY);
+        }
+        
+        red.end();
+        red.update();
     }
+    // VIDEO PLAY
+    if(bVideo){
+        vid_calm.update();
+    }
+    
+    // big bang
+    if(textParticleOn){
+        for (int i = 0; i < particles.size(); i++){
+            particles[i].resetForce();
+            particles[i].addDampingForce();
+            //particles[i].addRepulsionForce(mouseX, mouseY, 500, 1);
+            //particles[i].addAttractionForce(mouseX, mouseY, 500, 2);
+            //particles[i].addCounterClockwiseForce(mouseX, mouseY, 1000, 0.1);
+            //particles[i].addClockwiseForce(mouseX, mouseY, 200, 5);
+            particles[i].update();
+        }
+    }
+    
+    // make it rain
+    if(rainForce) {
+        for (int i = 0; i < particles.size(); i++){
+            particles[i].resetForce();
+            particles[i].addForce(-0.03,0.02, 0.02);
+            //particles[i].addCounterClockwiseForce(mouseX, mouseY, 1000, 2);
+            particles[i].update();
+        }
+    }
+    
+    // VIDEO AND SOUND
+    vid_calm.update();
+//    ofSoundUpdate();
 
-    red.end();
-    red.update();
+
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
-    //ofBackground(0); // no change
+
+    //ofBackground(0);
+    if(bRipple){
     red.draw(0,0, w, h);
     red.distance = rippleDistance;
     red.damping = rippleDamping;
+    }
+    
+    if(bVideo == true){
+        
+        vid_calm.draw(0, 0);
+
+//            vid_calm.play();
+//            cout << "video play";
+//            isPlayed = true;
+//        if(bVideo == true && isPlayed == true){
+//            cout << "video draw";
+//            vid_calm.draw(0, 0);
+//        }
+
+    }
     
     if(!bHide) {
         gui.draw();
@@ -151,7 +258,27 @@ void ofApp::draw(){
         ss << "Framerate: " << ofToString(ofGetFrameRate(),0) << "\n";
         ofDrawBitmapString(ss.str().c_str(), 250, 20);
     }
-
+    
+    if(textParticleOn){
+        ofBackground(0);
+        ofSetColor(255);
+        ofDrawBitmapString(ofGetFrameRate(), 50, 10);
+        
+        //        cam.begin();
+        if(!rainForce) {
+            
+            for (int i = 0; i < wordNum; i++){
+                particles[i].draw();
+            }
+        }
+        
+        if(rainForce) {
+            for (int i = wordNum; i < letterNum+wordNum; i++){
+                particles[i].draw();
+            }
+        }
+    }
+    
 }
 
 //--------------------------------------------------------------
@@ -165,12 +292,34 @@ void ofApp::keyPressed(int key){
     if(key == 'h'){ // hide gui
         bHide = !bHide;
     }
-  
+    
     if (key == 'q'){ // quit
         for (int i = 0; i < colorNum ;i++){
             xpos[i] = -10;
             ypos[i] = -10;
         }
+    }
+    if ( key == 'r') {
+        rainForce = !rainForce;
+    }
+    if ( key == 't') {
+        textParticleOn = !textParticleOn;
+        bRipple = !bRipple;
+        bVideo = false;
+
+        vid_calm.stop();
+        sound1.stop();
+        sound2.play();
+
+    }
+    if ( key == 'v') {
+        bVideo = true;
+        bRipple = false;
+        vid_calm.play();
+        sound1.play();
+//        sound2.stop();
+        vid_calm.setVolume(0.0);
+
     }
 }
 

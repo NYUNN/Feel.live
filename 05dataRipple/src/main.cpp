@@ -1,5 +1,6 @@
 #include "ofMain.h"
 #include "ofApp.h"
+#include "ofAppGlutWindow.h" 
 
 //========================================================================
 int main( ){
@@ -25,8 +26,8 @@ int main( ){
     
     // Multi-display mode
     ofGLFWWindowSettings settings;
-    settings.width = w1;
-    settings.height = h1;
+    settings.width = w2;
+    settings.height = h2;
 //    settings.windowMode = OF_FULLSCREEN;
     settings.multiMonitorFullScreen = true;
     ofCreateWindow(settings);

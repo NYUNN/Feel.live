@@ -1,20 +1,22 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D12DAD9580438F075F79A1341BAA613BD60DDFF0",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FB3B32087049FF306D778C0C6A2B3112C77D1287",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E" : 9223372036854775807,
     "D12DAD9580438F075F79A1341BAA613BD60DDFF0" : 9223372036854775807,
-    "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E" : 9223372036854775807
+    "FB3B32087049FF306D778C0C6A2B3112C77D1287" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1CA06D27-2746-45A7-B610-EE7BEE195EF7",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "D12DAD9580438F075F79A1341BAA613BD60DDFF0" : "apps\/",
-    "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E" : "addons\/ofxSocketIO\/"
+    "3C67F2CBD17FAA7A06339F7F1E2B09D2F682898E" : "..\/addons\/ofxSocketIO",
+    "D12DAD9580438F075F79A1341BAA613BD60DDFF0" : "",
+    "FB3B32087049FF306D778C0C6A2B3112C77D1287" : "03bigscreens_Yun\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "05dataRipple",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "03bigscreens_Yun\/05dataRipple\/05dataRipple.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "05dataRipple\/05dataRipple.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/soixantecircuits\/ofxSocketIO.git",
@@ -25,6 +27,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NYUNN\/ofx.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D12DAD9580438F075F79A1341BAA613BD60DDFF0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NYUNN\/bigscreens.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FB3B32087049FF306D778C0C6A2B3112C77D1287"
     }
   ]
 }
