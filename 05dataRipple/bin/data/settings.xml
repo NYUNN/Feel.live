@@ -1,8 +1,9 @@
 <group>
-	<sizeX>20</sizeX>
-	<sizeY>20</sizeY>
-	<distance>2</distance>
-	<damping>0.995</damping>
-	<screenWidth>7620</screenWidth>
+	<sizeX>11.89</sizeX>
+	<sizeY>12.385</sizeY>
+	<distance>2.935</distance>
+	<damping>0.999</damping>
+	<screenWidth>11520</screenWidth>
 	<frameRate>1</frameRate>
+<group/>
 </group>

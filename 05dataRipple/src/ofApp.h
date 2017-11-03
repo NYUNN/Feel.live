@@ -9,6 +9,7 @@
 #include "ofxFX.h"
 #include "particle.hpp"
 #include "ofxXmlSettings.h"
+#include "blob.h"
 
 
 
@@ -52,9 +53,8 @@ public:
     int screenHeight;
     ofxIntSlider screenWidth;
 
-
     
-    ofxRipples  red, blue;
+    ofxRipples  rip;
     
     bool bInfoText;
     bool bHide;
@@ -73,6 +73,7 @@ public:
     // BLOB ARRAYS
     vector <int> xpos;
     vector <int> ypos;
+    vector <blob> blobs;
     
     // TEXT PARTICLE
     vector <particle> particles;
