@@ -110,8 +110,8 @@ void ofApp::setup(){
     rainForce = false;
     
     // particle init
-    wordNum = 500;
-    letterNum = 1500;
+    wordNum = 700;
+    letterNum = 3000;
     velocityValue = 20;
     
     words = {"sad", "mad", "scared", "peaceful", "powerful", "confused", "rejected", "helpless", "submissive", "insecure","anxious", "excited", "sensuous", "energetic", "cheerful" "creative", "hopeful", "aware", "proud", "respected", "appreciated", "important", "faithful", "nurturing", "trusting", "loving", "intimate", "thoughtful", "content", "tired", "bored", "lonely", "depressed", "ashamed", "guilty", "hurt", "hostile", "angry", "selfish", "hateful", "critical"};
@@ -122,8 +122,8 @@ void ofApp::setup(){
         particle myParticle;
         myParticle.setLetterPos = false;
         myParticle.selectedWord = words[ofRandom(words.size())];
-        float vx = ofRandom(-velocityValue*12, velocityValue*18);
-        float vy = ofRandom(-velocityValue,velocityValue);
+        float vx = ofRandom(-velocityValue*14, velocityValue*18);
+        float vy = ofRandom(-velocityValue*6,velocityValue*6);
         float vz = ofRandom(velocityValue*7,velocityValue*10);
         myParticle.setInitialCondition(ofGetWindowSize()[0]/2,ofGetWindowHeight()/2, -7000, vx, vy, vz);
         particles.push_back(myParticle);
@@ -133,9 +133,9 @@ void ofApp::setup(){
         particle myParticle;
         myParticle.setLetterPos = false;
         myParticle.selectedWord = letters[ofRandom(letters.size())];
-        float vx = ofRandom(-velocityValue*8, velocityValue*8);
-        float vy = ofRandom(-velocityValue,velocityValue);
-        float vz = ofRandom(velocityValue*5,velocityValue*8);
+        float vx = ofRandom(-velocityValue*14, velocityValue*18);
+        float vy = ofRandom(-velocityValue*6,velocityValue*6);
+        float vz = ofRandom(velocityValue*7,velocityValue*10);
         myParticle.setInitialCondition(ofGetWindowSize()[0]/2,ofGetWindowHeight()/2, -7000, vx, vy, vz);
         particles.push_back(myParticle);
     }

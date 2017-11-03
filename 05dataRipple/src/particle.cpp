@@ -4,7 +4,7 @@
 //------------------------------------------------------------
 particle::particle(){
 
-    fontSize = ofRandom(30, 60);
+    fontSize = ofRandom(40, 80);
     font.load("BEBAS___.ttf",fontSize, true, false, true);
     angle = ofRandom(-50, 50);
     angleSpeed = ofRandom(-0.5, 0.5);
