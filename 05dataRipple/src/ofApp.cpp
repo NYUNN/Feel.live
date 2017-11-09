@@ -11,10 +11,10 @@ void ofApp::setup(){
     
     // BOOLEAN SETTING
     bInfoText = true;
-    bRipple = true;
+    bRipple = false;
     bVideo = false;
     isPlayed = false;
-    
+    urlShow = true;
     
     // GUI
     gui.setup();
@@ -22,7 +22,7 @@ void ofApp::setup(){
     gui.add(rippleSizeY.setup("sizeY", 20, 1, 100));
     gui.add(rippleDistance.setup("distance", 2, 1, 10));
     gui.add(rippleDamping.setup("damping", 0.995, 0.900, 0.999));
-    gui.add(screenWidth.setup("screenWidth", 1280, 1280, 11560));
+    gui.add(screenWidth.setup("screenWidth", 1280, 1280, 11520));
     gui.loadFromFile("settings.xml");
     screenHeight = screenWidth*0.08475;
     ofSetWindowShape(screenWidth, screenHeight);
@@ -111,7 +111,7 @@ void ofApp::setup(){
     
     // particle init
     wordNum = 700;
-    letterNum = 3000;
+    letterNum = 2000;
     velocityValue = 20;
     
     words = {"sad", "mad", "scared", "peaceful", "powerful", "confused", "rejected", "helpless", "submissive", "insecure","anxious", "excited", "sensuous", "energetic", "cheerful" "creative", "hopeful", "aware", "proud", "respected", "appreciated", "important", "faithful", "nurturing", "trusting", "loving", "intimate", "thoughtful", "content", "tired", "bored", "lonely", "depressed", "ashamed", "guilty", "hurt", "hostile", "angry", "selfish", "hateful", "critical"};
@@ -122,7 +122,7 @@ void ofApp::setup(){
         particle myParticle;
         myParticle.setLetterPos = false;
         myParticle.selectedWord = words[ofRandom(words.size())];
-        float vx = ofRandom(-velocityValue*14, velocityValue*18);
+        float vx = ofRandom(-velocityValue*18, velocityValue*22);
         float vy = ofRandom(-velocityValue*6,velocityValue*6);
         float vz = ofRandom(velocityValue*7,velocityValue*10);
         myParticle.setInitialCondition(ofGetWindowSize()[0]/2,ofGetWindowHeight()/2, -7000, vx, vy, vz);
@@ -133,7 +133,7 @@ void ofApp::setup(){
         particle myParticle;
         myParticle.setLetterPos = false;
         myParticle.selectedWord = letters[ofRandom(letters.size())];
-        float vx = ofRandom(-velocityValue*14, velocityValue*18);
+        float vx = ofRandom(-velocityValue*18, velocityValue*22);
         float vy = ofRandom(-velocityValue*6,velocityValue*6);
         float vz = ofRandom(velocityValue*7,velocityValue*10);
         myParticle.setInitialCondition(ofGetWindowSize()[0]/2,ofGetWindowHeight()/2, -7000, vx, vy, vz);
@@ -152,6 +152,9 @@ void ofApp::setup(){
     sound1.load("sound1.wav");
     sound2.load("sound2.wav");
     
+    
+    // Title and url
+    url.load("Roboto-Black.ttf",150, true, false, true);
 }
 
 void ofApp::onConnection () {
@@ -183,6 +186,7 @@ void ofApp::update(){
         //ofSetColor(255,0,0);
         // ofDrawEllipse(xpos[0], ypos[0], rippleSizeX, rippleSizeY);
         
+        // Blop part
         for (int i = 0; i < blobs.size() ; i++){
             //            ofSetColor(colors[i+1]);
             //ofDrawEllipse(xpos[i], ypos[i], rippleSizeX+ranSize, rippleSizeY+ranSize);
@@ -231,7 +235,17 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
-    ofBackground(255);
+    ofBackground(0);
+    
+    // Title and url
+    if(urlShow) {
+        ofSetColor(255,255,255);
+        string urlText = "bit.ly/colorsofemotion";
+        float urlWidth = url.stringWidth(urlText);
+        float urlHeight = url.stringHeight(urlText);
+        url.drawString(urlText, screenWidth/2-urlWidth/2, ofGetWindowHeight()/2+urlHeight/2);
+    }
+    
     if(bRipple){
 //        for (int i = 0; i < blobs.size() ; i++){
 //            //            ofSetColor(colors[i+1]);
@@ -239,15 +253,14 @@ void ofApp::draw(){
 //            //            blob myBlob;
 //            blobs[i].show();
 //        ofDrawRectangle(0, <#float y#>, <#float z#>, <#float w#>, <#float h#>)
+        
         rip.draw(0,0, screenWidth, screenHeight);
         rip.distance = rippleDistance;
         rip.damping = rippleDamping;
-        
-        
     }
     
     if(bVideo == true){
-        vid_calm.draw(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+        vid_calm.draw(0, 0);
     }
     
     if(!bHide) {
@@ -263,7 +276,6 @@ void ofApp::draw(){
         ofSetColor(255);
         ofDrawBitmapString(ofGetFrameRate(), 50, 10);
         
-        //        cam.begin();
         if(!rainForce) {
             
             for (int i = 0; i < wordNum; i++){
@@ -323,6 +335,11 @@ void ofApp::keyPressed(int key){
     }
     if(key == 'l') {
         gui.loadFromFile("settings.xml");
+    }
+    
+    if(key == 'u') {
+        urlShow = false;
+        bRipple = true;
     }
 }
 

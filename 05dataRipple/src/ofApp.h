@@ -24,6 +24,7 @@ public:
     void keyPressed(int key);
     void keyReleased(int key);
     
+    // socketIO part
     void gotEvent(std::string& name);
     void onServerEvent(ofxSocketIOData& data);
     void onPingEvent(ofxSocketIOData& data);
@@ -41,6 +42,7 @@ public:
     std::string address;
     std::string status;
     
+    // Video part
     ofVideoGrabber vidGrabber;
     int camWidth;
     int camHeight;
@@ -98,4 +100,8 @@ public:
     // SOUND PLAYER
     ofSoundPlayer  sound1;
     ofSoundPlayer  sound2;
+    
+    // Title & url part
+    ofTrueTypeFont url;
+    bool urlShow;
 };

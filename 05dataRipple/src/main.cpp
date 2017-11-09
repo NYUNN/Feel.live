@@ -17,6 +17,9 @@ int main( ){
     int w3 = 1920;
     int h3 = 180;
     
+    int w4 = 1280;
+    int h4 = 720;
+    
 //    ofAppGlutWindow window;
 //    ofSetupOpenGL(&window, w1,h1, OF_FULLSCREEN);            // <-------- setup the GL context
     
@@ -26,8 +29,8 @@ int main( ){
     
     // Multi-display mode
     ofGLFWWindowSettings settings;
-    settings.width = w1;
-    settings.height = h1;
+    settings.width = w2;
+    settings.height = h2;
     settings.windowMode = OF_FULLSCREEN;
     settings.multiMonitorFullScreen = true;
     ofCreateWindow(settings);
